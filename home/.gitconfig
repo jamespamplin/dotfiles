@@ -1,3 +1,7 @@
 [user]
 	email = james@jamespamplin.com
 	name = james@jamespamplin.com
+[push]
+	default = simple
+[core]
+	editor = vim
