@@ -2,8 +2,6 @@
 
 echo "Setting up the user environment..."
 
-chsh -s `which zsh`
-
 # Oh my zsh for dotfiles
 # curl -L http://install.ohmyz.sh | sh
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
