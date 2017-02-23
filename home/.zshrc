@@ -79,6 +79,9 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="vim"
 
+# TMUX TMP Directory to ensure active sessions not closed when rebooting (tmp dir cleaned)
+export TMUX_TMPDIR=~/.tmux/tmp
+
 # Load Homeshick
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
