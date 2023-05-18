@@ -71,8 +71,6 @@ brew "reattach-to-user-namespace"
 brew "ripgrep"
 # Editor of encrypted files
 brew "sops"
-# SSL scanner
-brew "sslyze"
 # Tool to generate documentation from Terraform modules
 brew "terraform-docs"
 # Terraform version manager inspired by rbenv
@@ -134,20 +132,18 @@ cask "iterm2"
 cask "keybase"
 # Noise cancelling application
 cask "krisp"
-# Office suite
-cask "libreoffice"
 # Video format converter (transcoder)
 cask "makemkv"
 # Online collaborative whiteboard platform
 cask "miro"
+# Tool to control external monitor brightness & volume
+cask "monitorcontrol"
 # Mounts servers and cloud storages as a disk on the desktop
 cask "mountain-duck"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
 # App to write, plan, collaborate, and get organized
 cask "notion"
-# File system integration
-cask "osxfuse"
 # Administration and development platform for PostgreSQL
 cask "pgadmin4"
 # Collaboration platform for API development
@@ -186,5 +182,8 @@ cask "vnc-viewer"
 cask "whatsapp"
 # Share, organize and collaborate on designs
 cask "zeplin"
-# Temporary makeshift alias for the video communication tool Zoom
-cask "zoomus"
+# Video communication and virtual meeting platform
+cask "zoom"
+
+# Powerful keep awake utility
+mas 'Amphetamine', id: 937984704
