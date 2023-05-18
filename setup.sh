@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
+set -e
 
 echo "Setting up the user environment..."
-
-
-echo "Cloning dotfiles..."
-git clone --bare https://github.com/jamespamplin/dotfiles.git $HOME/.cfg
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-config checkout
-config config --local status.showUntrackedFiles no
 
 
 echo "Installing XCode command line tools..."
@@ -19,10 +13,21 @@ else
   echo "Failed to install XCode command line tools."
 fi
 
+function config {
+  /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+}
+
+if [ ! -e $HOME/.cfg ]; then
+  echo "Cloning dotfiles..."
+  git clone --bare https://github.com/jamespamplin/dotfiles.git $HOME/.cfg
+  config checkout
+  config config --local status.showUntrackedFiles no
+fi
+
 sudo -v
 
 
-if -z `which brew`; then
+if [ -z `which brew` ]; then
   echo "Installing homebrew..."
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 fi
@@ -32,19 +37,19 @@ echo "Installing Brewfile packages..."
 brew bundle
 echo "Finished installing Brewfile packages."
 
-if -z `grep fish /etc/shells`; then
+if [ -z `grep fish /etc/shells` ]; then
   which fish | sudo tee -a /etc/shells
 fi
 
 echo "Use fish shell"
 chsh -s `which fish`
 
-if ! -e $HOME/.local/share/omf; then
+if [ ! -e $HOME/.local/share/omf ]; then
   echo "Installing oh-my-fish..."
   curl -fsSL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 
-  echo 'omf doctor' | fish
-  echo 'omf install' | fish
+  echo "omf doctor" | fish
+  echo "omf install" | fish
   echo "Finished installing oh-my-fish."
 fi
 
