@@ -16,3 +16,9 @@
 	editor = vim
 [init]
 	defaultBranch = main
+[alias]
+	a = add
+	c = commit
+	s = status
+	st = status
+	d = diff
