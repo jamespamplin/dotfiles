@@ -1,7 +1,18 @@
 [user]
 	email = james@jamespamplin.com
 	name = James Pamplin
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJ8dymJq6Z1yTg7SrjWvnObNolyvTcntAjSOcZVMCUf
+[gpg]
+	format = ssh
+
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+	gpgsign = true
 [push]
 	default = simple
 [core]
 	editor = vim
+[init]
+	defaultBranch = main
