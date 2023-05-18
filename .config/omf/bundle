@@ -1,0 +1,8 @@
+package brew
+package cd
+package colored-man-pages
+package foreign-env
+package nvm
+package z
+theme default
+theme spacefish
