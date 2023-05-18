@@ -1,6 +1,8 @@
-My dotfiles.
+# Dotfiles
 
-Uses [Homeshick](https://github.com/andsens/homeshick) to symlink dotfiles, zsh and [OMZ](http://ohmyz.sh/) shell.
+Uses the [`git --bare`](https://www.atlassian.com/git/tutorials/dotfiles) strategy for keeping user dotfiles source controlled.
+
+zsh and [OMZ](http://ohmyz.sh/) shell.
 
 ## Setup
 
