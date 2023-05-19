@@ -24,12 +24,16 @@ if [ ! -e $HOME/.cfg ]; then
   config config --local status.showUntrackedFiles no
 fi
 
-sudo -v
-
 
 if [ -z `which brew` ]; then
   echo "Installing homebrew..."
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+
+  if [ -e /usr/local/Homebrew/bin/brew ]; then
+    eval "$(/usr/local/Homebrew/bin/brew shellenv)"
+  else
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 fi
 
 
@@ -41,8 +45,11 @@ if [ -z `grep fish /etc/shells` ]; then
   which fish | sudo tee -a /etc/shells
 fi
 
-echo "Use fish shell"
-chsh -s `which fish`
+
+if [[ ! $SHELL =~ "fish" ]]; then
+  echo "Use fish shell"
+  chsh -s `which fish`
+fi
 
 if [ ! -e $HOME/.local/share/omf ]; then
   echo "Installing oh-my-fish..."
