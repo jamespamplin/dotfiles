@@ -61,4 +61,9 @@ mkdir -p ~/.1password && ln -fs ~/Library/Group\ Containers/2BUA8C4S2C.com.1pass
 echo "Using ssh for dotfiles repo"
 config remote set-url origin git@github.com:jamespamplin/dotfiles.git
 
+
+echo "Setting macos preferences"
+./.macos.sh
+
+
 echo "Done!"
