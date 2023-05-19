@@ -3,8 +3,9 @@
 
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
-tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
+tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "yt-dlp/taps"
@@ -71,6 +72,8 @@ brew "reattach-to-user-namespace"
 brew "ripgrep"
 # Editor of encrypted files
 brew "sops"
+# Cross-shell prompt for astronauts
+brew "starship"
 # Tool to generate documentation from Terraform modules
 brew "terraform-docs"
 # Terraform version manager inspired by rbenv
@@ -118,6 +121,8 @@ cask "docker"
 cask "dropbox"
 # Web browser
 cask "firefox"
+# InconsolataGo Nerd Font (InconsolataGo)
+cask "font-inconsolata-go-nerd-font"
 # Web browser
 cask "google-chrome"
 # Open-source video transcoder
