@@ -168,10 +168,6 @@ cask "telegram"
 cask "transmit"
 # Free and open-source OpenVPN client
 cask "tunnelblick"
-# Development environment
-cask "vagrant"
-# Virtualizer for x86 hardware
-cask "virtualbox"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
