@@ -3,14 +3,41 @@ set -e
 
 echo "Setting up the user environment..."
 
+function isAdmin {
+  id -nG | grep -qw 'admin'
+}
 
-echo "Installing XCode command line tools..."
-if xcode-select --print-path &>/dev/null; then
-  echo "XCode command line tools already installed."
-elif xcode-select --install &>/dev/null; then
-  echo "Finished installing XCode command line tools."
-else
-  echo "Failed to install XCode command line tools."
+## admins will only install system level shared dependencies
+if isAdmin; then
+  echo "Installing XCode command line tools..."
+  if xcode-select --print-path &>/dev/null; then
+    echo "XCode command line tools already installed."
+  elif xcode-select --install &>/dev/null; then
+    echo "Finished installing XCode command line tools."
+  else
+    echo "Failed to install XCode command line tools."
+  fi
+
+
+  # rosetta for intel compatibility on mac silicon
+  if pgrep -q oahd; then
+    echo "Rosetta already installed"
+  else
+    sudo softwareupdate --install-rosetta --agree-to-license
+  fi
+
+
+  if [ -z `which brew` ] && [ ! -e /usr/local/Homebrew/bin/brew ] && [ ! -e /opt/homebrew/bin/brew ]; then
+    echo "Installing homebrew..."
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+  fi
+fi
+
+## ensure homebrew and installed homebrew packages are available to this script
+if [ -e /usr/local/Homebrew/bin/brew ]; then
+  eval "$(/usr/local/Homebrew/bin/brew shellenv)"
+elif [ -e /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 function config {
@@ -24,25 +51,19 @@ if [ ! -e $HOME/.cfg ]; then
   config config --local status.showUntrackedFiles no
 fi
 
-
-if [ -z `which brew` ]; then
-  echo "Installing homebrew..."
-  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-
-  if [ -e /usr/local/Homebrew/bin/brew ]; then
-    eval "$(/usr/local/Homebrew/bin/brew shellenv)"
-  else
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi
+if isAdmin; then
+  echo "Installing Brewfile packages..."
+  brew bundle
+  echo "Finished installing Brewfile packages."
 fi
 
-
-echo "Installing Brewfile packages..."
-brew bundle
-echo "Finished installing Brewfile packages."
-
 if [ -z `grep fish /etc/shells` ]; then
-  which fish | sudo tee -a /etc/shells
+  if isAdmin; then
+    which fish | sudo tee -a /etc/shells
+  else
+    echo "Error: fish missing from /etc/shells, run setup again as an admin"
+    exit 1
+  fi
 fi
 
 
