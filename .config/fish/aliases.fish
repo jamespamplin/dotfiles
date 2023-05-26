@@ -1,5 +1,6 @@
 # dotfile bare git repo management
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias dotfiles='env GIT_WORK_TREE=$HOME GIT_DIR=$HOME/.cfg/'
 
 # ls
 alias l="ls -ahlF"
