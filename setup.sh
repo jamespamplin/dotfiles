@@ -94,4 +94,15 @@ echo "Setting macos preferences"
 ./.macos.sh
 
 
+if [ -z `which node` ]; then
+  echo "Installing nodejs with nvm"
+  fish -c 'nvm install --lts'
+  fish -c 'corepack enable'
+  fish -c 'corepack prepare pnpm@latest --activate'
+fi
+
+echo "Installing local node packages"
+pnpm add -g git-cz zx
+
+
 echo "Done!"
