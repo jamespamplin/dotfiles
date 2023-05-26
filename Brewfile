@@ -3,7 +3,6 @@
 
 tap "buo/cask-upgrade"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/cask"
 tap "homebrew/core"
@@ -121,8 +120,6 @@ cask "docker"
 cask "dropbox"
 # Web browser
 cask "firefox"
-# InconsolataGo Nerd Font (InconsolataGo)
-cask "font-inconsolata-go-nerd-font"
 # Web browser
 cask "google-chrome"
 # Open-source video transcoder

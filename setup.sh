@@ -66,6 +66,15 @@ if [ -z `grep fish /etc/shells` ]; then
   fi
 fi
 
+if isAdmin && [ ! -e '/Library/Fonts/InconsolataGoNerdFont-Regular.ttf' ]; then
+  echo "Installing Inconsolata-Go Nerd Font"
+  tmpdir=`mktemp -d`
+
+  curl -fLo $tmpdir/InconsolataGo.zip 'https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.1/InconsolataGo.zip'
+  sudo unzip $tmpdir/InconsolataGo.zip '*.ttf' -d /Library/Fonts
+  rm -r $tmpdir
+fi
+
 
 if [[ ! $SHELL =~ "fish" ]]; then
   echo "Use fish shell"
